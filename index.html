@@ -212,3 +212,42 @@
     </script>
 </body>
 </html>
+<?php
+// Conexión a la base de datos
+$host = 'localhost';
+$db = 'gamer hub';
+$user = 'root';
+$pass = '';
+
+// Crear conexión
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Insertar usuario en la base de datos
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre_completo = $_POST['nombre_completo'];
+    $nombre_usuario = $_POST['nombre_usuario'];
+    $correo_electronico = $_POST['correo_electronico'];
+    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);  // Encriptar contraseña
+
+    $sql = "INSERT INTO usuarios (nombre_completo, nombre_usuario, correo_electronico, contrasena) 
+            VALUES (?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $nombre_completo, $nombre_usuario, $correo_electronico, $contrasena);
+
+    if ($stmt->execute()) {
+        echo "Usuario registrado correctamente";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
