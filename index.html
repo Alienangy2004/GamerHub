@@ -210,40 +210,41 @@
             $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
         });
     </script>
-</body>
-</html>
-<?php
-// Conexión a la base de datos
+    <?php
 $host = 'localhost';
-$db = 'gamer hub';
-$user = 'root';
-$pass = '';
+$db = 'nombre_de_tu_base_de_datos';
+$user = 'root';  // usuario de XAMPP (generalmente "root")
+$pass = '';  // contraseña de XAMPP (generalmente vacía)
 
 // Crear conexión
 $conn = new mysqli($host, $user, $pass, $db);
 
-// Verificar la conexión
+// Verificar conexión
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Insertar usuario en la base de datos
+    <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener datos del formulario
     $nombre_completo = $_POST['nombre_completo'];
     $nombre_usuario = $_POST['nombre_usuario'];
     $correo_electronico = $_POST['correo_electronico'];
-    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);  // Encriptar contraseña
+    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
 
+    // Preparar la consulta SQL
     $sql = "INSERT INTO usuarios (nombre_completo, nombre_usuario, correo_electronico, contrasena) 
             VALUES (?, ?, ?, ?)";
-    
+
+    // Preparar declaración
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $nombre_completo, $nombre_usuario, $correo_electronico, $contrasena);
 
+    // Ejecutar y verificar la inserción
     if ($stmt->execute()) {
         echo "Usuario registrado correctamente";
     } else {
-        echo "Error: " . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $stmt->close();
@@ -251,3 +252,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
+</body>
+</html>
