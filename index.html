@@ -206,48 +206,6 @@
         $('.message a').click(function(){
             $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
         });
-    </script>
-
-    <?php
-    $host = 'localhost';
-    $db = 'nombre_de_tu_base_de_datos'; // Cambia esto por el nombre de tu base de datos
-    $user = 'root';
-    $pass = '';
-
-    // Crear conexión
-    $conn = new mysqli($host, $user, $pass, $db);
-
-    // Verificar conexión
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre_completo'])) {
-        // Obtener datos del formulario
-        $nombre_completo = $_POST['nombre_completo'];
-        $nombre_usuario = $_POST['nombre_usuario'];
-        $correo_electronico = $_POST['correo_electronico'];
-        $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
-
-        // Preparar la consulta SQL
-        $sql = "INSERT INTO usuarios (nombre_completo, nombre_usuario, correo_electronico, contrasena) 
-                VALUES (?, ?, ?, ?)";
-
-        // Preparar declaración
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $nombre_completo, $nombre_usuario, $correo_electronico, $contrasena);
-
-        // Ejecutar y verificar la inserción
-        if ($stmt->execute()) {
-            echo "Usuario registrado correctamente";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $stmt->close();
-    }
-
-    $conn->close();
-    ?>
+    </script> 
 </body>
 </html>
