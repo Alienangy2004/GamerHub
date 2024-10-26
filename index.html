@@ -1,3 +1,17 @@
+<?php
+$host = 'localhost';
+$db = 'gamer+hub';
+$user = 'root';
+$pass = '';
+
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
