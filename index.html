@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerHub | POS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="toggle-theme" class="btn-neon theme-switch">
+        <span></span>☀️ Modo Día
+    </button>
+
+    <div class="login-page" id="auth-section">
+        <div class="auth-card">
+            <div class="logo-wrapper">
+                <img src="logo1.png" alt="GamerHub Logo" class="main-logo-small">
+            </div>
+            <div class="form-box">
+                <form class="register-form" id="regForm">
+                    <h2>Create Account</h2>
+                    <div class="input-group">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" placeholder="Username" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-neon"><span></span>Register</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form>
+
+                <form class="login-form" id="loginForm">
+                    <h2>GamerHub Login</h2>
+                    <div class="input-group">
+                        <input type="text" placeholder="Username" required>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-neon"><span></span>Access</button>
+                    <p class="message">Not registered? <a href="#">Create account</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="store-section" class="hidden">
+        <header class="store-top-bar">
+            <div class="header-logo-container">
+                <img src="logo2.png" alt="Logo" class="store-logo-neon-adjusted">
+                <h1>GAMERHUB <span class="accent-text blink-neon">PUNTO DE VENTA</span></h1>
+            </div>
+        </header>
+        
+        <div class="main-layout">
+            <div class="products-column">
+                <div id="products-grid" class="products-grid"></div>
+            </div>
+            <aside class="cart-column">
+                <div class="auth-card cart-card">
+                    <h3>🛒 Carrito</h3>
+                    <div id="cart-items" class="cart-items-list"></div>
+                    <hr class="cart-hr">
+                    <p class="total-text">Total: $<span id="cart-total">0.00</span></p>
+                    <button class="btn-neon btn-block" onclick="checkout()">
+                        <span></span>Completar Compra
+                    </button>
+                    <button class="btn-clear" onclick="clearCart()">Vaciar Carrito</button>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="store-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>📍 Ubicación Central</h4>
+                    <p>Av. Cyberpunk 2077, Edificio Arasaka, Piso 77</p>
+                    <p>Neo-México, Distrito Tech</p>
+                </div>
+                <div class="footer-section">
+                    <h4>🚀 Nuestras Redes</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-item">🔵 FB: /GamerHub_Oficial</a>
+                        <a href="#" class="social-item">📸 IG: @GamerHub_Store</a>
+                        <a href="#" class="social-item">🐦 TW: @GamerHub_Tech</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GamerHub POS - Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

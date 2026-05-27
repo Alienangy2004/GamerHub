@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* --- VARIABLES Y TEMAS --- */
+:root {
+    --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --bg-card: #ffffff;
+    --text-main: #333;
+    --accent-neon: #289bb8;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-gradient: linear-gradient(-45deg, #020617, #0f172a, #1a1a2e, #020617);
+    --bg-card: #0a1120;
+    --text-main: #ffffff;
+    --accent-neon: #00f2ff;
+    --shadow: rgba(0, 0, 0, 0.8);
+}
+
+/* --- ANIMACIÓN DE FONDO --- */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-main);
+    transition: background 0.8s ease;
+    overflow-x: hidden;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hidden { display: none !important; }
+
+/* --- SECCIÓN DE LOGIN / REGISTRO --- */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.auth-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid var(--accent-neon);
+    box-shadow: 0 0 25px var(--shadow);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Logo 1: Pequeño y centrado */
+.logo-wrapper {
+    margin-bottom: 30px;
+}
+
+.main-logo-small {
+    width: 130px; /* Tamaño ideal */
+    height: auto;
+    filter: drop-shadow(0 0 10px var(--accent-neon));
+    display: block;
+    margin: 0 auto;
+}
+
+/* Formulario Styles */
+.auth-card h2 {
+    margin-bottom: 20px;
+    color: var(--accent-neon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    border-radius: 8px;
+    color: var(--text-main);
+    box-sizing: border-box; /* Crucial para que no se desborde */
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 10px var(--accent-neon);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.message a {
+    color: var(--accent-neon);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- SECCIÓN TIENDA --- */
+#store-section {
+    width: 95%;
+    max-width: 1400px;
+    padding: 40px 0;
+}
+
+.store-top-bar {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Efecto Parpadeo Neón */
+.blink-neon {
+    animation: neonBlink 1.5s infinite alternate;
+}
+
+@keyframes neonBlink {
+    0% { opacity: 1; text-shadow: 0 0 10px var(--accent-neon); }
+    100% { opacity: 0.3; text-shadow: 0 0 2px var(--accent-neon); }
+}
+
+.accent-text { color: var(--accent-neon); }
+
+.store-logo-neon-adjusted {
+    width: 140px;
+    filter: drop-shadow(0 0 8px var(--accent-neon));
+    margin-bottom: 15px;
+}
+
+/* --- GRID DE PRODUCTOS (3 POR FILA) --- */
+.main-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.products-column { flex: 3; }
+.cart-column { flex: 1; min-width: 350px; }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* FORZAR 3 COLUMNAS */
+    gap: 25px;
+}
+
+/* --- TARJETAS DE PRODUCTO --- */
+.product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-neon);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px var(--accent-neon);
+}
+
+/* --- CARRITO --- */
+.cart-card {
+    position: sticky;
+    top: 20px;
+    border: 1px solid var(--accent-neon);
+}
+
+.cart-items-list {
+    max-height: 350px;
+    overflow-y: auto;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    font-size: 0.9em;
+}
+
+.total-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-neon);
+    margin: 20px 0;
+}
+
+/* --- BOTONES NEÓN --- */
+.btn-neon {
+    position: relative;
+    padding: 12px 25px;
+    color: var(--accent-neon);
+    background: transparent;
+    border: 1px solid var(--accent-neon);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.btn-neon:hover {
+    background: var(--accent-neon);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-neon);
+}
+
+.btn-block { width: 100%; margin-top: 10px; }
+
+.btn-clear {
+    background: none;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-clear:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* --- BOTÓN DE TEMA --- */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 8px 15px;
+    font-size: 0.8em;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1200px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 850px) {
+    .main-layout { flex-direction: column; }
+    .products-grid { grid-template-columns: 1fr; }
+    .cart-column { width: 100%; }
+}
